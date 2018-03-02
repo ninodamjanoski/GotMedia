@@ -11,5 +11,6 @@ import rx.Observable;
  */
 
 public interface CategoriesRepository {
+    Observable storeCategories();
     Observable<List<CategoriesResult>> getCategories();
 }

@@ -46,10 +46,13 @@ public class SplashFragment extends FragmentBase implements SplashContract.Splas
     }
 
 
+    public void openCategories() {
+
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         presenter.dropView();
     }
-
 }

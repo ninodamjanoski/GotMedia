@@ -28,22 +28,21 @@ public class CategoriesRepositoryImpl implements CategoriesRepository {
     }
 
     @Override
-    public Observable<List<CategoriesResult>> getCategories() {
+    public Observable storeCategories() {
         return categoriesService.pollCategories()
-                .map(new Func1<List<CategoriesResult>, List<CategoriesResult>>() {
-                    @Override
-                    public List<CategoriesResult> call(List<CategoriesResult> categoriesResults) {
-                        if(categoriesResults != null){
-                            categoriesCacheService.writeCategoriesInfo(categoriesResults);
-                        }
-                        return categoriesResults;
-                    }
-                })
-                .onErrorResumeNext(new Func1<Throwable, Observable<List<CategoriesResult>>>() {
-                    @Override
-                    public Observable<List<CategoriesResult>> call(Throwable throwable) {
-                        return categoriesCacheService.getCategories();
-                    }
-                });
+                .map(new Func1<List<CategoriesResult>, Object>(){
+            @Override
+            public List<CategoriesResult> call(List<CategoriesResult> categoriesResults) {
+                if(categoriesResults != null){
+                    categoriesCacheService.writeCategoriesInfo(categoriesResults);
+                }
+                return categoriesResults;
+            }
+        });
+    }
+
+    @Override
+    public Observable<List<CategoriesResult>> getCategories() {
+        return categoriesCacheService.getCategories();
     }
 }

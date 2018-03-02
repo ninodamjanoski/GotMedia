@@ -32,7 +32,7 @@ public class SplashPresenterImpl implements SplashContract.SplashPresenter {
     }
 
     private void pollCategories() {
-        categoriesRepository.getCategories()
+        categoriesRepository.storeCategories()
                 .subscribe(new Subscriber<List<CategoriesResult>>() {
                     @Override
                     public void onCompleted() {
@@ -46,7 +46,7 @@ public class SplashPresenterImpl implements SplashContract.SplashPresenter {
 
                     @Override
                     public void onNext(List<CategoriesResult> categoriesResults) {
-
+                        fragment.openCategories();
                     }
                 });
     }
