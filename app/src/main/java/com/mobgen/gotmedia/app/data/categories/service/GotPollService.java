@@ -14,6 +14,6 @@ import rx.Observable;
 
 public interface GotPollService {
 
-    @GET("index")
+    @GET("api1/index")
     Observable<Response<List<CategoriesDto>>> pollCategories();
 }

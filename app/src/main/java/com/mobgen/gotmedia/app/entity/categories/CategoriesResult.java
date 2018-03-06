@@ -19,9 +19,9 @@ import org.greenrobot.greendao.annotation.Generated;
 })
 public class CategoriesResult implements Parcelable {
 
-    private String href;
     private String id;
     private String title;
+    private String href;
 
 
     public String getHref() {
@@ -42,11 +42,11 @@ public class CategoriesResult implements Parcelable {
         title = in.readString();
     }
 
-    @Generated(hash = 995343199)
-    public CategoriesResult(String href, String id, String title) {
-        this.href = href;
+    @Generated(hash = 1198210623)
+    public CategoriesResult(String id, String title, String href) {
         this.id = id;
         this.title = title;
+        this.href = href;
     }
 
     @Generated(hash = 13005112)

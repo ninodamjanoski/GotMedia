@@ -1,5 +1,10 @@
 package com.mobgen.gotmedia.app.domain.categories.service;
 
+import com.mobgen.gotmedia.app.data.categories.CategoriesDto;
+
+import java.util.List;
+
+import retrofit2.Response;
 import rx.Observable;
 
 /**
@@ -7,5 +12,5 @@ import rx.Observable;
  */
 
 public interface CategoriesService {
-    Observable pollCategories();
+    Observable<Response<List<CategoriesDto>>> pollCategories();
 }

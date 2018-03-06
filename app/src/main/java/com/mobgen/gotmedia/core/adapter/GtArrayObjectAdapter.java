@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class CmArrayObjectAdapter extends ObjectAdapter {
+public class GtArrayObjectAdapter extends ObjectAdapter {
     private ArrayList<Object> items = new ArrayList();
 
     class DiffCallback extends DiffUtil.Callback {
@@ -34,15 +34,15 @@ public class CmArrayObjectAdapter extends ObjectAdapter {
     }
 
 
-    public CmArrayObjectAdapter() {
+    public GtArrayObjectAdapter() {
         super();
     }
 
-    public CmArrayObjectAdapter(PresenterSelector presenterSelector) {
+    public GtArrayObjectAdapter(PresenterSelector presenterSelector) {
         super(presenterSelector);
     }
 
-    public CmArrayObjectAdapter(Presenter presenter) {
+    public GtArrayObjectAdapter(Presenter presenter) {
         super(presenter);
     }
 

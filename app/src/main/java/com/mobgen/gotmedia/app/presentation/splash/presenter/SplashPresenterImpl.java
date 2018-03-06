@@ -4,6 +4,7 @@ import com.mobgen.gotmedia.app.domain.categories.repository.CategoriesRepository
 import com.mobgen.gotmedia.app.entity.categories.CategoriesResult;
 import com.mobgen.gotmedia.app.presentation.splash.SplashFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -33,7 +34,7 @@ public class SplashPresenterImpl implements SplashContract.SplashPresenter {
 
     private void pollCategories() {
         categoriesRepository.storeCategories()
-                .subscribe(new Subscriber<List<CategoriesResult>>() {
+                .subscribe(new Subscriber<List<Object>>() {
                     @Override
                     public void onCompleted() {
 
@@ -45,7 +46,7 @@ public class SplashPresenterImpl implements SplashContract.SplashPresenter {
                     }
 
                     @Override
-                    public void onNext(List<CategoriesResult> categoriesResults) {
+                    public void onNext(List<Object> categoriesResults) {
                         fragment.openCategories();
                     }
                 });

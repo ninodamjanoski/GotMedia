@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cell_margin">5dp</dimen>
+    <dimen name="cell_vertical_margin">5dp</dimen>
+    <dimen name="cell_horizontal_margin">5dp</dimen>
+    <dimen name="cell_attribute_text">16sp</dimen>
+    <dimen name="cell_attribute_height">50dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="default_shadow_size">4.0dip</dimen>
+    <dimen name="vertical_padding">16.0dip</dimen>
+    <dimen name="horizontal_padding">16.0dip</dimen>
+
+</resources>

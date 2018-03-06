@@ -43,12 +43,4 @@ public abstract class SplashModule {
     @Binds
     @ActivityScoped
     abstract CategoriesRepository categoriesRepository(CategoriesRepositoryImpl categoriesRepository);
-
-    @Provides
-    @ActivityScoped
-    static GotPollService gotPollService(Retrofit baseService){
-        return baseService.create(GotPollService.class);
-    }
-
-
 }

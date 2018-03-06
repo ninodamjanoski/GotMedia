@@ -10,7 +10,7 @@ import dagger.android.support.DaggerFragment;
  * Created on 3/1/18.
  */
 
-public class FragmentBase extends DaggerFragment {
+public abstract class FragmentBase extends DaggerFragment {
 
     protected <T> T getFragmentListener(Context activity, Class<T> listenerClass) {
         if (getTargetFragment() != null && listenerClass.isInstance(getTargetFragment())) {

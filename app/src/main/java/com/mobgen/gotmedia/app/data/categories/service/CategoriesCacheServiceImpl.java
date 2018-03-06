@@ -1,5 +1,6 @@
 package com.mobgen.gotmedia.app.data.categories.service;
 
+import com.mobgen.gotmedia.app.data.categories.CategoriesDto;
 import com.mobgen.gotmedia.app.domain.categories.service.CategoriesCacheService;
 import com.mobgen.gotmedia.app.entity.categories.CategoriesResult;
 import com.mobgen.gotmedia.app.entity.categories.CategoriesResultDao;
@@ -42,10 +43,23 @@ public class CategoriesCacheServiceImpl implements CategoriesCacheService {
     }
 
     @Override
-    public void writeCategoriesInfo(List<CategoriesResult> categoriesResult) {
+    public Observable<Boolean> hasCategories() {
+        return Observable.fromCallable(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                return daoSession.getCategoriesResultDao().loadByRowId(1) != null;
+            }
+        })
+                .subscribeOn(schedulerProvider.getIo())
+                .observeOn(schedulerProvider.getMain());
+    }
+
+    @Override
+    public void writeCategoriesInfo(List<CategoriesDto> categoriesDtos) {
         CategoriesResultDao categoriesResultDao = daoSession.getCategoriesResultDao();
-        for(CategoriesResult result : categoriesResult){
-            categoriesResultDao.insertOrReplace(result);
+        for(CategoriesDto result : categoriesDtos){
+            CategoriesResult categoriesResult = new CategoriesResult(result.getId(), result.getTitle(), result.getHref());
+            categoriesResultDao.insertOrReplace(categoriesResult);
         }
     }
 }

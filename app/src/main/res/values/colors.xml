@@ -6,4 +6,28 @@
 
 
     <color name="background_default">#fffafafa</color>
+    <color name="white_70">#b2ffffff</color>
+    <color name="black_op_12">#1f000000</color>
+    <color name="black_op_30">#4d000000</color>
+    <color name="black_op_7">#12000000</color>
+    <color name="black_op_70">#b3000000</color>
+
+    <color name="gray_tertiary">#42000000</color>
+    <color name="green_300">#ff80e8b9</color>
+    <color name="green_500">#ff00d775</color>
+    <color name="green_700">#ff00a85d</color>
+
+
+    <color name="blue_300">#ff7fd7e8</color>
+    <color name="blue_500">#ff00b2d6</color>
+    <color name="blue_500_op_20">#3300b2d6</color>
+    <color name="blue_700">#ff008ca8</color>
+
+    <color name="div_dark">@color/black_op_30</color>
+    <color name="cell_card_background">@android:color/white</color>
+
+    <color name="cell_card_background_medium">@color/black_op_7</color>
+    <color name="cell_card_background_dark">@color/black_op_12</color>
+    <color name="gotmedia_ripple">@color/black_op_7</color>
+
 </resources>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_op_7"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/header_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/activityToolbar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="?colorPrimary"
+            android:minHeight="?actionBarSize"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <include layout="@layout/view_toolbar_content" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/default_shadow_size"
+            android:background="@drawable/shader_light_top_bottom" />
+
+    </LinearLayout>
+
+    <include layout="@layout/view_list_error" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        tools:layout_editor_absoluteX="168dp"
+        tools:layout_editor_absoluteY="84dp" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_marginEnd="@dimen/cell_horizontal_margin"
+            android:layout_marginStart="@dimen/cell_horizontal_margin"
+            android:layout_below="@+id/header_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+</RelativeLayout>

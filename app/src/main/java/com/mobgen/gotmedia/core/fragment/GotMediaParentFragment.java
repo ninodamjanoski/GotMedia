@@ -9,7 +9,7 @@ import com.mobgen.gotmedia.core.fragment.base.FragmentBase;
  * Created on 3/1/18.
  */
 
-public class GotMediaParentFragment extends FragmentBase {
+public abstract class GotMediaParentFragment extends FragmentBase {
 
     protected void addChildFragment(Fragment fragment, int viewGroupId, String tag) {
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();

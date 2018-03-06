@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GotMedia</string>
+    <string name="retry">RETRY</string>
+    <string name="there_was_an_error_loading_categories">There was an error loading categories. Please check your internet connection while we check our servers.</string>
 </resources>

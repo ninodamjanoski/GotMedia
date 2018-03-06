@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mobgen.gotmedia.R;
+import com.mobgen.gotmedia.app.presentation.FragmentNavListener;
+import com.mobgen.gotmedia.app.presentation.categories.CategoriesFragment;
 import com.mobgen.gotmedia.app.presentation.splash.SplashFragment;
 import com.mobgen.gotmedia.core.fragment.GotMediaParentFragment;
 
@@ -19,9 +21,11 @@ import javax.inject.Inject;
  * Created on 3/1/18.
  */
 
-public class GotCategoriesParentFragment extends GotMediaParentFragment {
+public class GotCategoriesParentFragment extends GotMediaParentFragment implements FragmentNavListener {
     
     public static final String TAG = "GotCategoriesParentFragment";
+    private CategoriesFragment categoriesFragment;
+    private SplashFragment splashFragment;
 
 
     public static GotCategoriesParentFragment newInstance(){
@@ -46,11 +50,21 @@ public class GotCategoriesParentFragment extends GotMediaParentFragment {
     }
 
     private void initFragments() {
-        SplashFragment attributesFragment;
+        if(!hasChildFragmentWithTag(CategoriesFragment.TAG)){
+            categoriesFragment = CategoriesFragment.newInstance();
+        }
         if (!hasChildFragmentWithTag(SplashFragment.TAG)) {
-            attributesFragment = SplashFragment.newInstance();
-            addChildFragment(attributesFragment, R.id.activityContent, SplashFragment.TAG);
+            splashFragment = SplashFragment.newInstance();
+            addChildFragment(splashFragment, R.id.activityContent, SplashFragment.TAG);
         }
 
+    }
+
+    @Override
+    public void onOpenCategories() {
+        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        ft.remove(splashFragment);
+        ft.commit();
+        addChildFragment(categoriesFragment, R.id.activityContent, CategoriesFragment.TAG);
     }
 }
