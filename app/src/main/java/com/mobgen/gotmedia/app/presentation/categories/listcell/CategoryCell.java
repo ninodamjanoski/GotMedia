@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mobgen.gotmedia.R;
-import com.mobgen.gotmedia.app.presentation.categories.pojo.CategoryItem;
+import com.mobgen.gotmedia.app.entity.categories.Category;
 import com.mobgen.gotmedia.core.lists.ChildClickPresenter;
 
 /**
@@ -44,9 +44,9 @@ public class CategoryCell extends ChildClickPresenter {
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, Object item) {
-        final CategoryItem categoryItem = (CategoryItem) item;
+        final Category categoryItem = (Category) item;
         CategoriesViewHolder categoriesViewHolder = (CategoriesViewHolder) viewHolder;
-        categoriesViewHolder.bindCellViewData(categoryItem.getId(), categoryItem.getTitle(), categoryItem.getUrl());
+        categoriesViewHolder.bindCellViewData(categoryItem.getId(), categoryItem.getTitle(), categoryItem.getHref());
         categoriesViewHolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

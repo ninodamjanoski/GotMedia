@@ -23,8 +23,12 @@ import android.widget.TextView;
 import com.mobgen.gotmedia.R;
 import com.mobgen.gotmedia.app.domain.categories.enums.CategoryType;
 import com.mobgen.gotmedia.app.entity.categories.Book;
+import com.mobgen.gotmedia.app.entity.categories.Category;
+import com.mobgen.gotmedia.app.entity.categories.Character;
+import com.mobgen.gotmedia.app.entity.categories.House;
 import com.mobgen.gotmedia.app.presentation.categories.listcell.BookCell;
-import com.mobgen.gotmedia.app.presentation.categories.pojo.CategoryItem;
+import com.mobgen.gotmedia.app.presentation.categories.listcell.CharacterCell;
+import com.mobgen.gotmedia.app.presentation.categories.listcell.HouseCell;
 import com.mobgen.gotmedia.app.presentation.categories.presenter.CategoriesContract;
 import com.mobgen.gotmedia.core.adapter.GotArrayObjectAdapter;
 import com.mobgen.gotmedia.core.adapter.RecyclerViewAdapter;
@@ -41,7 +45,6 @@ import javax.inject.Inject;
 
 public class CategoryListFragment extends FragmentBase {
 
-
     public static final String TAG = "CategoryListFragment";
     public static final String ITEM = "item";
     public static final double MIN_RATING = 1d;
@@ -52,7 +55,7 @@ public class CategoryListFragment extends FragmentBase {
     private GotArrayObjectAdapter adapterItems;
     private RecyclerViewAdapter adapter;
     private int yLoc;
-    private CategoryItem item;
+    private Category item;
     private TextView desc;
     private View buttonClose;
     @Inject
@@ -74,7 +77,7 @@ public class CategoryListFragment extends FragmentBase {
         }
     }
 
-    public static CategoryListFragment newInstance(CategoryItem item, int yLoc) {
+    public static CategoryListFragment newInstance(Category item, int yLoc) {
         CategoryListFragment fragment = new CategoryListFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(ITEM, item);
@@ -154,6 +157,8 @@ public class CategoryListFragment extends FragmentBase {
     private PresenterSelector getListPresenter() {
         ClassPresenterSelector selector = new ClassPresenterSelector();
         selector.addClassPresenter(Book.class, new BookCell());
+        selector.addClassPresenter(House.class, new HouseCell());
+        selector.addClassPresenter(Character.class, new CharacterCell());
         return selector;
     }
 

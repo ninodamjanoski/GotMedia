@@ -60,8 +60,17 @@ public class CategoriesPresenterTest {
     }
 
     @Test
-    public void onItemSelected() throws Exception {
+    public void noCacheNoNetworkVisualizeDataTest() throws Exception {
 
+        when(categoriesRepository.getCategories())
+                .thenReturn(Observable.<List<Category>>just(null));
+
+        presenter.takeView(categoriesFragment);
+
+        ArgumentCaptor<List> itemsResultArgumentCaptor = ArgumentCaptor.forClass(List.class);
+
+        verify(categoriesFragment).showData(itemsResultArgumentCaptor.capture());
+
+        assertTrue(itemsResultArgumentCaptor.getValue().size() == 0);
     }
-
 }

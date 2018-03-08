@@ -2,6 +2,8 @@ package com.mobgen.gotmedia.app.data.categories.service;
 
 import com.mobgen.gotmedia.app.data.categories.CategoriesDto;
 import com.mobgen.gotmedia.app.entity.categories.Book;
+import com.mobgen.gotmedia.app.entity.categories.Character;
+import com.mobgen.gotmedia.app.entity.categories.House;
 
 import java.util.List;
 
@@ -21,7 +23,14 @@ public interface GotPollService {
     Observable<Response<List<CategoriesDto>>> pollCategories();
 
     @GET("{category}")
-    Observable<Response<List<Book>>> pollCategory(@Path(value = "category", encoded = true) String category);
+    Observable<Response<List<Book>>> pollBooks(@Path(value = "category", encoded = true) String category);
+
+
+    @GET("{category}")
+    Observable<Response<List<House>>> pollHouses(@Path(value = "category", encoded = true) String category);
+
+    @GET("{category}")
+    Observable<Response<List<Character>>> pollCharacters(@Path(value = "category", encoded = true) String category);
 
     @GET("{category}")
     Observable<Response<List<CategoriesDto>>> pollCategory(@Path(value = "category", encoded = true) String category,

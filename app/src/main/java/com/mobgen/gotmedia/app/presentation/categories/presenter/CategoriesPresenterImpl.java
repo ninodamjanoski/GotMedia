@@ -3,7 +3,6 @@ package com.mobgen.gotmedia.app.presentation.categories.presenter;
 import com.mobgen.gotmedia.app.domain.categories.repository.CategoriesRepository;
 import com.mobgen.gotmedia.app.entity.categories.Category;
 import com.mobgen.gotmedia.app.presentation.categories.CategoriesFragment;
-import com.mobgen.gotmedia.app.presentation.categories.pojo.CategoryItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,17 +35,7 @@ public class CategoriesPresenterImpl implements CategoriesContract.CategoriesPre
 
     public void visualizeData() {
         categoriesRepository.getCategories()
-                .map(new Func1<List<Category>, List<Object>>() {
-                    @Override
-                    public List<Object> call(List<Category> categoriesResults) {
-                        List<Object> items = null;
-                        if(categoriesResults != null || categoriesResults.size() > 0){
-                            items = prepareItems(categoriesResults);
-                        }
-                        return items;
-                    }
-                })
-                .subscribe(new Subscriber<List<Object>>() {
+                .subscribe(new Subscriber<List<? extends Object>>() {
                     @Override
                     public void onCompleted() {
 
@@ -58,27 +47,19 @@ public class CategoriesPresenterImpl implements CategoriesContract.CategoriesPre
                     }
 
                     @Override
-                    public void onNext(List<Object> categoriesResults) {
-                        if(categoriesResults == null || categoriesResults.size() == 0){
+                    public void onNext(List<? extends Object> categories) {
+                        if(categories == null || categories.size() == 0){
                             fragment.updateState(true);
                             return;
                         }
                         fragment.updateState(false);
-                        fragment.showData(categoriesResults);
+                        fragment.showData(categories);
                     }
                 });
     }
 
-    private List<Object> prepareItems(List<Category> categoriesResults) {
-        List<Object> items = new ArrayList<>(categoriesResults.size());
-        for(Category result : categoriesResults){
-            items.add(new CategoryItem(result.getId(), result.getTitle(), result.getHref()));
-        }
-        return items;
-    }
-
     @Override
-    public void onItemSelected(CategoryItem data) {
+    public void onItemSelected(Category data) {
         fragment.showCategoryListFragment(data);
     }
 

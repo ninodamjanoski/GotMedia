@@ -1,5 +1,8 @@
 package com.mobgen.gotmedia.app.entity.categories;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,7 +13,7 @@ import java.util.List;
  * Created on 3/7/18.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Book {
+public class Book implements Parcelable {
     private final List<String> authors;
     private final String country;
     private final String isbn;
@@ -33,6 +36,29 @@ public class Book {
         this.released = released;
     }
 
+
+    protected Book(Parcel in) {
+        authors = in.createStringArrayList();
+        country = in.readString();
+        isbn = in.readString();
+        mediaType = in.readString();
+        numPages = in.readInt();
+        name = in.readString();
+        publisher = in.readString();
+        released = new Date(in.readLong());
+    }
+
+    public static final Creator<Book> CREATOR = new Creator<Book>() {
+        @Override
+        public Book createFromParcel(Parcel in) {
+            return new Book(in);
+        }
+
+        @Override
+        public Book[] newArray(int size) {
+            return new Book[size];
+        }
+    };
 
     public List<String> getAuthors() {
         return authors;
@@ -64,5 +90,22 @@ public class Book {
 
     public Date getReleased() {
         return released;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStringList(authors);
+        parcel.writeString(country);
+        parcel.writeString(isbn);
+        parcel.writeString(mediaType);
+        parcel.writeInt(numPages);
+        parcel.writeString(name);
+        parcel.writeString(publisher);
+        parcel.writeLong(released.getTime());
     }
 }

@@ -1,8 +1,8 @@
 package com.mobgen.gotmedia.app.presentation.categories.presenter;
 
+import com.mobgen.gotmedia.app.entity.categories.Category;
 import com.mobgen.gotmedia.app.presentation.categories.CategoriesFragment;
 import com.mobgen.gotmedia.app.presentation.categories.CategoryListFragment;
-import com.mobgen.gotmedia.app.presentation.categories.pojo.CategoryItem;
 import com.mobgen.gotmedia.core.base.BasePresenter;
 
 /**
@@ -16,12 +16,12 @@ public class CategoriesContract {
 
         void visualizeData();
 
-        void onItemSelected(CategoryItem data);
+        void onItemSelected(Category data);
     }
 
     public interface CategoryListPresenter extends BasePresenter<CategoryListFragment> {
 
-        void visualizeData(CategoryItem url, int size);
+        void visualizeData(Category url, int size);
     }
 
 

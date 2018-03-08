@@ -31,10 +31,10 @@ public class CategoriesCacheServiceImpl implements CategoriesCacheService {
     }
 
     @Override
-    public Observable<List<Category>> getCategories() {
-        return Observable.fromCallable(new Callable<List<Category>>() {
+    public Observable<List<? extends Object>> getCategories() {
+        return Observable.fromCallable(new Callable<List<? extends Object>>() {
             @Override
-            public List<Category> call() throws Exception {
+            public List<? extends Object> call() throws Exception {
                 CategoryDao categoriesDao = daoSession.getCategoryDao();
                 return categoriesDao.queryBuilder().orderAsc(CategoryDao.Properties.Title).list();
             }

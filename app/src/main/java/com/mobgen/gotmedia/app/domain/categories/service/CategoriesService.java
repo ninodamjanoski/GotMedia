@@ -2,6 +2,8 @@ package com.mobgen.gotmedia.app.domain.categories.service;
 
 import com.mobgen.gotmedia.app.data.categories.CategoriesDto;
 import com.mobgen.gotmedia.app.entity.categories.Book;
+import com.mobgen.gotmedia.app.entity.categories.Character;
+import com.mobgen.gotmedia.app.entity.categories.House;
 
 import java.util.List;
 
@@ -14,5 +16,7 @@ import rx.Observable;
 
 public interface CategoriesService {
     Observable<Response<List<CategoriesDto>>> pollCategories();
-    Observable<Response<List<Book>>> getCategory(String url, int page, int pageSize);
+    Observable<Response<List<Book>>> getBooks(String url, int page, int pageSize);
+    Observable<Response<List<House>>> getHouses(String url, int page, int pageSize);
+    Observable<Response<List<Character>>> getCharacters(String url, int page, int pageSize);
 }

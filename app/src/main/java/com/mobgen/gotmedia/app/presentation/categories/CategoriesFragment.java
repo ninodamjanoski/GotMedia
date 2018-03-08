@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.mobgen.gotmedia.R;
+import com.mobgen.gotmedia.app.entity.categories.Category;
 import com.mobgen.gotmedia.app.presentation.categories.listcell.CategoryCell;
-import com.mobgen.gotmedia.app.presentation.categories.pojo.CategoryItem;
 import com.mobgen.gotmedia.app.presentation.categories.presenter.CategoriesContract;
 import com.mobgen.gotmedia.core.adapter.GotArrayObjectAdapter;
 import com.mobgen.gotmedia.core.adapter.RecyclerViewAdapter;
@@ -75,14 +75,14 @@ public class CategoriesFragment extends FragmentBase {
             @Override
             public void onViewClicked(View view, Object data) {
                 yLoc = getYLocationFromView(view);
-                presenter.onItemSelected((CategoryItem) data);
+                presenter.onItemSelected((Category) data);
             }
         });
         originalAdapter.setOnItemClickedListener(new RecyclerViewAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(View view, Object data, int i) {
                 yLoc = getYLocationFromView(view);
-                presenter.onItemSelected((CategoryItem) data);
+                presenter.onItemSelected((Category) data);
             }
         });
         list.setAdapter(originalAdapter);
@@ -104,7 +104,7 @@ public class CategoriesFragment extends FragmentBase {
     private PresenterSelector getListPresenter() {
 
         ClassPresenterSelector selector = new ClassPresenterSelector();
-        selector.addClassPresenter(CategoryItem.class, new CategoryCell());
+        selector.addClassPresenter(Category.class, new CategoryCell());
         return selector;
     }
 
@@ -116,7 +116,7 @@ public class CategoriesFragment extends FragmentBase {
 
     }
 
-    public void showData(List<Object> categoriesResults) {
+    public void showData(List<? extends Object> categoriesResults) {
         adapterItems.setData(categoriesResults);
     }
 
@@ -140,7 +140,7 @@ public class CategoriesFragment extends FragmentBase {
     }
 
 
-    public void showCategoryListFragment(CategoryItem item) {
+    public void showCategoryListFragment(Category item) {
         CategoryListFragment fragment = CategoryListFragment.newInstance(item, yLoc);
         fragment.setTargetFragment(this, 1);
         getParentFragment().getChildFragmentManager().beginTransaction()
