@@ -3,8 +3,6 @@ package com.mobgen.gotmedia.app.entity.categories;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.Generated;
@@ -17,7 +15,7 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity(indexes = {
         @Index(value = "id", unique = true)
 })
-public class CategoriesResult implements Parcelable {
+public class Category implements Parcelable {
 
     private String id;
     private String title;
@@ -36,32 +34,32 @@ public class CategoriesResult implements Parcelable {
         return title;
     }
 
-    protected CategoriesResult(Parcel in) {
+    protected Category(Parcel in) {
         href = in.readString();
         id = in.readString();
         title = in.readString();
     }
 
-    @Generated(hash = 1198210623)
-    public CategoriesResult(String id, String title, String href) {
+    @Generated(hash = 2032260999)
+    public Category(String id, String title, String href) {
         this.id = id;
         this.title = title;
         this.href = href;
     }
 
-    @Generated(hash = 13005112)
-    public CategoriesResult() {
+    @Generated(hash = 1150634039)
+    public Category() {
     }
 
-    public static final Creator<CategoriesResult> CREATOR = new Creator<CategoriesResult>() {
+    public static final Creator<Category> CREATOR = new Creator<Category>() {
         @Override
-        public CategoriesResult createFromParcel(Parcel in) {
-            return new CategoriesResult(in);
+        public Category createFromParcel(Parcel in) {
+            return new Category(in);
         }
 
         @Override
-        public CategoriesResult[] newArray(int size) {
-            return new CategoriesResult[size];
+        public Category[] newArray(int size) {
+            return new Category[size];
         }
     };
 

@@ -5,13 +5,18 @@
     android:layout_height="match_parent">
 
     <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/myCarContentHolder"
+        android:id="@+id/gotContentHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_default">
 
         <FrameLayout
             android:id="@+id/activityContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/overFragmentHolder"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

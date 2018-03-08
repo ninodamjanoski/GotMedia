@@ -10,5 +10,13 @@
     <dimen name="default_shadow_size">4.0dip</dimen>
     <dimen name="vertical_padding">16.0dip</dimen>
     <dimen name="horizontal_padding">16.0dip</dimen>
+    <dimen name="card_elevation">2dip</dimen>
+    <dimen name="card_corner_radius">2dip</dimen>
+    <dimen name="field_height">48dip</dimen>
+    <dimen name="default_padding">8dip</dimen>
+    <dimen name="image_big">40dip</dimen>
+    <dimen name="book_title_min_height">49dp</dimen>
+    <dimen name="Cell_paragraph_left">122dp</dimen>
+    <dimen name="cell_title_text_size">20sp</dimen>
 
 </resources>

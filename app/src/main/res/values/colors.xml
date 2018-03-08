@@ -29,5 +29,6 @@
     <color name="cell_card_background_medium">@color/black_op_7</color>
     <color name="cell_card_background_dark">@color/black_op_12</color>
     <color name="gotmedia_ripple">@color/black_op_7</color>
+    <color name="gray_divider">#dbdbdb</color>
 
 </resources>

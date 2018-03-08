@@ -2,4 +2,14 @@
     <string name="app_name">GotMedia</string>
     <string name="retry">RETRY</string>
     <string name="there_was_an_error_loading_categories">There was an error loading categories. Please check your internet connection while we check our servers.</string>
+    <string name="there_was_an_error_loading_books">There was an error loading Books. Please check your internet connection while we check our servers.</string>
+    <string name="there_was_an_error_loading_houses">There was an error loading Houses. Please check your internet connection while we check our servers.</string>
+    <string name="there_was_an_error_loading_characters">There was an error loading Characters. Please check your internet connection while we check our servers.</string>
+    <string name="authors">Authors:</string>
+    <string name="isbn">Isbn</string>
+    <string name="country">Country</string>
+    <string name="media_type">Media type:</string>
+    <string name="number_pages">Number pages:</string>
+    <string name="publisher">Publisher:</string>
+    <string name="date">Date released:</string>
 </resources>

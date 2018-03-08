@@ -1,7 +1,7 @@
 package com.mobgen.gotmedia.app.presentation.categories.presenter;
 
 import com.mobgen.gotmedia.app.domain.categories.repository.CategoriesRepository;
-import com.mobgen.gotmedia.app.entity.categories.CategoriesResult;
+import com.mobgen.gotmedia.app.entity.categories.Category;
 import com.mobgen.gotmedia.app.entity.categories.MockCategoriesResult;
 import com.mobgen.gotmedia.app.presentation.categories.CategoriesFragment;
 
@@ -33,7 +33,7 @@ public class CategoriesPresenterTest {
     @Mock
     private CategoriesRepository categoriesRepository;
 
-    private List<CategoriesResult> categories;
+    private List<Category> categories;
 
     @Before
     public void setUpPresenter(){

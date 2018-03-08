@@ -2,8 +2,8 @@ package com.mobgen.gotmedia.app.data.categories.service;
 
 import com.mobgen.gotmedia.app.data.categories.CategoriesDto;
 import com.mobgen.gotmedia.app.domain.categories.service.CategoriesCacheService;
-import com.mobgen.gotmedia.app.entity.categories.CategoriesResult;
-import com.mobgen.gotmedia.app.entity.categories.CategoriesResultDao;
+import com.mobgen.gotmedia.app.entity.categories.Category;
+import com.mobgen.gotmedia.app.entity.categories.CategoryDao;
 import com.mobgen.gotmedia.app.entity.categories.DaoSession;
 import com.mobgen.gotmedia.core.utilities.rx.SchedulerProvider;
 
@@ -31,11 +31,12 @@ public class CategoriesCacheServiceImpl implements CategoriesCacheService {
     }
 
     @Override
-    public Observable<List<CategoriesResult>> getCategories() {
-        return Observable.fromCallable(new Callable<List<CategoriesResult>>() {
+    public Observable<List<Category>> getCategories() {
+        return Observable.fromCallable(new Callable<List<Category>>() {
             @Override
-            public List<CategoriesResult> call() throws Exception {
-                return daoSession.getCategoriesResultDao().loadAll();
+            public List<Category> call() throws Exception {
+                CategoryDao categoriesDao = daoSession.getCategoryDao();
+                return categoriesDao.queryBuilder().orderAsc(CategoryDao.Properties.Title).list();
             }
         })
         .subscribeOn(schedulerProvider.getIo())
@@ -47,7 +48,7 @@ public class CategoriesCacheServiceImpl implements CategoriesCacheService {
         return Observable.fromCallable(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                return daoSession.getCategoriesResultDao().loadByRowId(1) != null;
+                return daoSession.getCategoryDao().loadByRowId(1) != null;
             }
         })
                 .subscribeOn(schedulerProvider.getIo())
@@ -56,10 +57,10 @@ public class CategoriesCacheServiceImpl implements CategoriesCacheService {
 
     @Override
     public void writeCategoriesInfo(List<CategoriesDto> categoriesDtos) {
-        CategoriesResultDao categoriesResultDao = daoSession.getCategoriesResultDao();
+        CategoryDao categoryDao = daoSession.getCategoryDao();
         for(CategoriesDto result : categoriesDtos){
-            CategoriesResult categoriesResult = new CategoriesResult(result.getId(), result.getTitle(), result.getHref());
-            categoriesResultDao.insertOrReplace(categoriesResult);
+            Category categoriesResult = new Category(result.getId(), result.getTitle(), result.getHref());
+            categoryDao.insertOrReplace(categoriesResult);
         }
     }
 }

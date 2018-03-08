@@ -1,11 +1,11 @@
 package com.mobgen.gotmedia.app.presentation.categories;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v17.leanback.widget.ClassPresenterSelector;
 import android.support.v17.leanback.widget.PresenterSelector;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,12 +14,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.mobgen.gotmedia.R;
-import com.mobgen.gotmedia.app.entity.categories.CategoriesResult;
 import com.mobgen.gotmedia.app.presentation.categories.listcell.CategoryCell;
 import com.mobgen.gotmedia.app.presentation.categories.pojo.CategoryItem;
 import com.mobgen.gotmedia.app.presentation.categories.presenter.CategoriesContract;
-import com.mobgen.gotmedia.app.presentation.splash.presenter.SplashContract;
-import com.mobgen.gotmedia.core.adapter.GtArrayObjectAdapter;
+import com.mobgen.gotmedia.core.adapter.GotArrayObjectAdapter;
 import com.mobgen.gotmedia.core.adapter.RecyclerViewAdapter;
 import com.mobgen.gotmedia.core.fragment.base.FragmentBase;
 import com.mobgen.gotmedia.core.lists.ChildClickPresenter;
@@ -42,11 +40,12 @@ public class CategoriesFragment extends FragmentBase {
     private View toolbarTitle;
     private View progressBar;
     private RecyclerView list;
-    private GtArrayObjectAdapter adapterItems;
+    private GotArrayObjectAdapter adapterItems;
     private View errorText;
     private Button errorButton;
     @Inject
     CategoriesContract.CategoriesPresenter presenter;
+    private int yLoc;
 
     public static CategoriesFragment newInstance() {
         CategoriesFragment carMediaParentFragment = new CategoriesFragment();
@@ -70,12 +69,20 @@ public class CategoriesFragment extends FragmentBase {
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(getActivity(), 1, false));
         list.setItemAnimator(new SlideInLeftAnimator());
-        adapterItems = new GtArrayObjectAdapter();
+        adapterItems = new GotArrayObjectAdapter();
         RecyclerViewAdapter originalAdapter = new RecyclerViewAdapter(adapterItems, getListPresenter());
         originalAdapter.setOnCellChildClickListener(new ChildClickPresenter.OnCellChildClickListener() {
             @Override
             public void onViewClicked(View view, Object data) {
-                presenter.onItemSelected();
+                yLoc = getYLocationFromView(view);
+                presenter.onItemSelected((CategoryItem) data);
+            }
+        });
+        originalAdapter.setOnItemClickedListener(new RecyclerViewAdapter.OnItemClickedListener() {
+            @Override
+            public void onItemClicked(View view, Object data, int i) {
+                yLoc = getYLocationFromView(view);
+                presenter.onItemSelected((CategoryItem) data);
             }
         });
         list.setAdapter(originalAdapter);
@@ -130,5 +137,25 @@ public class CategoriesFragment extends FragmentBase {
             }
         }
         progressBar.setVisibility(View.GONE);
+    }
+
+
+    public void showCategoryListFragment(CategoryItem item) {
+        CategoryListFragment fragment = CategoryListFragment.newInstance(item, yLoc);
+        fragment.setTargetFragment(this, 1);
+        getParentFragment().getChildFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.fade_in_fast, R.anim.fade_out_fast,
+                        R.anim.fade_in_fast,
+                        R.anim.fade_out_fast).replace(R.id.overFragmentHolder, fragment, CategoryListFragment.TAG)
+                .addToBackStack(CategoryListFragment.TAG).commitAllowingStateLoss();
+    }
+
+    private int getYLocationFromView(View view) {
+        if (view == null) {
+            return 0;
+        }
+        Rect rectf = new Rect();
+        view.getGlobalVisibleRect(rectf);
+        return rectf.top;
     }
 }

@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import com.mobgen.gotmedia.R;
 import com.mobgen.gotmedia.app.presentation.FragmentNavListener;
 import com.mobgen.gotmedia.app.presentation.categories.CategoriesFragment;
+import com.mobgen.gotmedia.app.presentation.categories.CategoryListFragment;
 import com.mobgen.gotmedia.app.presentation.splash.SplashFragment;
 import com.mobgen.gotmedia.core.fragment.GotMediaParentFragment;
+import com.mobgen.gotmedia.core.fragment.callback.BackAndUpNavigator;
 
 import javax.inject.Inject;
 
@@ -21,7 +23,7 @@ import javax.inject.Inject;
  * Created on 3/1/18.
  */
 
-public class GotCategoriesParentFragment extends GotMediaParentFragment implements FragmentNavListener {
+public class GotCategoriesParentFragment extends GotMediaParentFragment implements FragmentNavListener, BackAndUpNavigator {
     
     public static final String TAG = "GotCategoriesParentFragment";
     private CategoriesFragment categoriesFragment;
@@ -66,5 +68,20 @@ public class GotCategoriesParentFragment extends GotMediaParentFragment implemen
         ft.remove(splashFragment);
         ft.commit();
         addChildFragment(categoriesFragment, R.id.activityContent, CategoriesFragment.TAG);
+    }
+
+    @Override
+    public boolean onBackNavigation() {
+        CategoryListFragment overFragment = (CategoryListFragment) getChildFragmentManager().findFragmentById(R.id.overFragmentHolder);
+        if(overFragment != null){
+            getChildFragmentManager().popBackStackImmediate();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onUpNavigation() {
+        return false;
     }
 }

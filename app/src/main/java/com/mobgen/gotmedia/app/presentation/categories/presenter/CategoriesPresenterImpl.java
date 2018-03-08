@@ -1,7 +1,7 @@
 package com.mobgen.gotmedia.app.presentation.categories.presenter;
 
 import com.mobgen.gotmedia.app.domain.categories.repository.CategoriesRepository;
-import com.mobgen.gotmedia.app.entity.categories.CategoriesResult;
+import com.mobgen.gotmedia.app.entity.categories.Category;
 import com.mobgen.gotmedia.app.presentation.categories.CategoriesFragment;
 import com.mobgen.gotmedia.app.presentation.categories.pojo.CategoryItem;
 
@@ -10,7 +10,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import retrofit2.http.PUT;
 import rx.Subscriber;
 import rx.functions.Func1;
 
@@ -37,9 +36,9 @@ public class CategoriesPresenterImpl implements CategoriesContract.CategoriesPre
 
     public void visualizeData() {
         categoriesRepository.getCategories()
-                .map(new Func1<List<CategoriesResult>, List<Object>>() {
+                .map(new Func1<List<Category>, List<Object>>() {
                     @Override
-                    public List<Object> call(List<CategoriesResult> categoriesResults) {
+                    public List<Object> call(List<Category> categoriesResults) {
                         List<Object> items = null;
                         if(categoriesResults != null || categoriesResults.size() > 0){
                             items = prepareItems(categoriesResults);
@@ -70,17 +69,17 @@ public class CategoriesPresenterImpl implements CategoriesContract.CategoriesPre
                 });
     }
 
-    private List<Object> prepareItems(List<CategoriesResult> categoriesResults) {
+    private List<Object> prepareItems(List<Category> categoriesResults) {
         List<Object> items = new ArrayList<>(categoriesResults.size());
-        for(CategoriesResult result : categoriesResults){
+        for(Category result : categoriesResults){
             items.add(new CategoryItem(result.getId(), result.getTitle(), result.getHref()));
         }
         return items;
     }
 
     @Override
-    public void onItemSelected() {
-
+    public void onItemSelected(CategoryItem data) {
+        fragment.showCategoryListFragment(data);
     }
 
     @Override

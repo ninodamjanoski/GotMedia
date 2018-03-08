@@ -1,10 +1,8 @@
 package com.mobgen.gotmedia.app.presentation.splash.presenter;
 
 import com.mobgen.gotmedia.app.domain.categories.repository.CategoriesRepository;
-import com.mobgen.gotmedia.app.entity.categories.CategoriesResult;
 import com.mobgen.gotmedia.app.presentation.splash.SplashFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;

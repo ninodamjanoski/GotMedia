@@ -4,7 +4,8 @@ import com.mobgen.gotmedia.app.data.categories.CategoriesDto;
 import com.mobgen.gotmedia.app.domain.categories.repository.CategoriesRepository;
 import com.mobgen.gotmedia.app.domain.categories.service.CategoriesCacheService;
 import com.mobgen.gotmedia.app.domain.categories.service.CategoriesService;
-import com.mobgen.gotmedia.app.entity.categories.CategoriesResult;
+import com.mobgen.gotmedia.app.entity.categories.Book;
+import com.mobgen.gotmedia.app.entity.categories.Category;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,6 @@ import javax.inject.Inject;
 
 import retrofit2.Response;
 import rx.Observable;
-import rx.functions.Action1;
 import rx.functions.Func1;
 
 /**
@@ -57,7 +57,18 @@ public class CategoriesRepositoryImpl implements CategoriesRepository {
     }
 
     @Override
-    public Observable<List<CategoriesResult>> getCategories() {
+    public Observable<List<Category>> getCategories() {
         return categoriesCacheService.getCategories();
+    }
+
+    @Override
+    public Observable<List<? extends Object>> getCategory(String url, int page, int pageSize) {
+        return categoriesService.getCategory(url, page, pageSize)
+                .map(new Func1<Response<List<Book>>, List<? extends Object>>() {
+                    @Override
+                    public List<? extends Object> call(Response<List<Book>> listResponse) {
+                        return listResponse.body();
+                    }
+                });
     }
 }

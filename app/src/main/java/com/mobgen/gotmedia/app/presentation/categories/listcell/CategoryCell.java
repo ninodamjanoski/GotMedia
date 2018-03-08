@@ -23,7 +23,7 @@ public class CategoryCell extends ChildClickPresenter {
 
         public CategoryCellViewHolder(View view) {
             super(view);
-            this.view = view;
+            this.view = view.findViewById(R.id.cell);
             textCategory = view.findViewById(R.id.description);
         }
 

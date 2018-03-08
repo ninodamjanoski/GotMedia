@@ -8,17 +8,25 @@ import com.mobgen.gotmedia.app.presentation.view.fragment.GotCategoriesParentFra
 
 class GotMediaActivity : ActivityBase() {
 
+    private var gotCategoriesParentFragment: GotCategoriesParentFragment? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var carAttributesParentFragment = supportFragmentManager.findFragmentByTag(GotCategoriesParentFragment.TAG)
+        gotCategoriesParentFragment = supportFragmentManager.findFragmentByTag(GotCategoriesParentFragment.TAG)
                 as? GotCategoriesParentFragment
-        if(carAttributesParentFragment == null){
-            carAttributesParentFragment = GotCategoriesParentFragment.newInstance()
+        if(gotCategoriesParentFragment == null){
+            gotCategoriesParentFragment = GotCategoriesParentFragment.newInstance()
             val ft = supportFragmentManager.beginTransaction()
-            ft.add(R.id.activityContent, carAttributesParentFragment, GotCategoriesParentFragment.TAG)
+            ft.add(R.id.activityContent, gotCategoriesParentFragment, GotCategoriesParentFragment.TAG)
             ft.commit()
             supportFragmentManager.executePendingTransactions()
+        }
+    }
+
+    override fun onBackPressed() {
+        if(!gotCategoriesParentFragment!!.onBackNavigation()){
+            super.onBackPressed()
         }
     }
 }
