@@ -40,7 +40,7 @@ public class CategoriesServiceImpl implements CategoriesService {
 
     @Override
     public Observable<Response<List<Book>>> getBooks(String url, int page, int pageSize) {
-        return gotPollService.pollCategory(url, page, pageSize)
+        return gotPollService.pollBooks(url, page, pageSize)
                 .subscribeOn(schedulerProvider.getIo())
                 .observeOn(schedulerProvider.getMain());
     }
@@ -48,14 +48,14 @@ public class CategoriesServiceImpl implements CategoriesService {
 
     @Override
     public Observable<Response<List<House>>> getHouses(String url, int page, int pageSize) {
-        return gotPollService.pollHouses(url)
+        return gotPollService.pollHouses(url, page, pageSize)
                 .subscribeOn(schedulerProvider.getIo())
                 .observeOn(schedulerProvider.getMain());
     }
 
     @Override
     public Observable<Response<List<Character>>> getCharacters(String url, int page, int pageSize) {
-        return gotPollService.pollCharacters(url)
+        return gotPollService.pollCharacters(url, page, pageSize)
                 .subscribeOn(schedulerProvider.getIo())
                 .observeOn(schedulerProvider.getMain());
     }

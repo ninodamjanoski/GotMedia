@@ -18,5 +18,6 @@
     <dimen name="book_title_min_height">49dp</dimen>
     <dimen name="Cell_paragraph_left">122dp</dimen>
     <dimen name="cell_title_text_size">20sp</dimen>
+    <dimen name="progress_list_loading">36dp</dimen>
 
 </resources>

@@ -64,6 +64,13 @@ public class CategoryListFragment extends FragmentBase {
     private TextView errorText;
     private Button errorButton;
     private String errorStr;
+    private LinearLayoutManager layoutMan;
+    private View progressBarListLoading;
+    private boolean isReachedEnd;
+
+    public void setReachedEnd(boolean isReachedEnd) {
+        this.isReachedEnd = isReachedEnd;
+    }
 
     class HeaderAnimAdapter extends AnimatorListenerAdapter {
         HeaderAnimAdapter() {
@@ -121,11 +128,25 @@ public class CategoryListFragment extends FragmentBase {
         list = view.findViewById(R.id.list);
         header = view.findViewById(R.id.header);
         progressBar = view.findViewById(R.id.progressBar);
+        progressBarListLoading = view.findViewById(R.id.progressBarListLoading);
         buttonClose = view.findViewById(R.id.searchBoxClear);
         adapterItems = new GotArrayObjectAdapter();
         adapter = new RecyclerViewAdapter(adapterItems, getListPresenter());
-        list.setLayoutManager(new LinearLayoutManager(getContext(), 1, false));
+        layoutMan = new LinearLayoutManager(getContext(), 1, false);
+        list.setLayoutManager(layoutMan);
         list.setAdapter(adapter);
+        list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int totalItemCount = layoutMan.getItemCount() - 1;
+                int lastItem = layoutMan.findLastCompletelyVisibleItemPosition();
+                if (lastItem == totalItemCount && progressBarListLoading.getVisibility() != View.VISIBLE && !isReachedEnd){
+                    progressBarListLoading.setVisibility(View.VISIBLE);
+                    presenter.visualizeData(item, adapterItems.size());
+                }
+            }
+        });
         desc = view.findViewById(R.id.description);
         errorText = view.findViewById(R.id.errorText);
         errorButton = view.findViewById(R.id.errorButton);
@@ -228,5 +249,8 @@ public class CategoryListFragment extends FragmentBase {
 
     public void showData(List<Object> categoriesResults) {
         adapterItems.addAll(adapterItems.size(), categoriesResults);
+        if(progressBarListLoading.getVisibility() != View.GONE){
+            progressBarListLoading.setVisibility(View.GONE);
+        }
     }
 }

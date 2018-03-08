@@ -23,18 +23,14 @@ public interface GotPollService {
     Observable<Response<List<Category>>> pollCategories();
 
     @GET("{category}")
-    Observable<Response<List<Book>>> pollBooks(@Path(value = "category", encoded = true) String category);
-
-
-    @GET("{category}")
-    Observable<Response<List<House>>> pollHouses(@Path(value = "category", encoded = true) String category);
+    Observable<Response<List<Book>>> pollBooks(@Path(value = "category", encoded = true) String category,
+                                               @Query("_page") int page, @Query("_limit") int limit);
 
     @GET("{category}")
-    Observable<Response<List<Character>>> pollCharacters(@Path(value = "category", encoded = true) String category);
-
+    Observable<Response<List<House>>> pollHouses(@Path(value = "category", encoded = true) String category,
+                                               @Query("_page") int page, @Query("_limit") int limit);
     @GET("{category}")
-    Observable<Response<List<Book>>> pollCategory(@Path(value = "category", encoded = true) String category,
-                                                           @Query("_page") int page, @Query("_limit") int limit);
-
+    Observable<Response<List<Character>>> pollCharacters(@Path(value = "category", encoded = true) String category,
+                                               @Query("_page") int page, @Query("_limit") int limit);
 
 }

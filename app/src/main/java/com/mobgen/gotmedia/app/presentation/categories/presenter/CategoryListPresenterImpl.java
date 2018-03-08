@@ -17,9 +17,10 @@ import rx.Subscriber;
 
 public class CategoryListPresenterImpl implements CategoriesContract.CategoryListPresenter {
 
-    public static final int PAGE_SIZE = 2;
+    public static final int PAGE_SIZE = 5;
     private final CategoriesRepository categoriesRepository;
     private CategoryListFragment fragment;
+    private boolean isReachedEnd;
 
     @Inject
     public CategoryListPresenterImpl(CategoriesRepository categoriesRepository){
@@ -37,7 +38,7 @@ public class CategoryListPresenterImpl implements CategoriesContract.CategoryLis
     }
 
     @Override
-    public void visualizeData(Category item, int size) {
+    public void visualizeData(Category item, final int size) {
         fragment.updateState(false);
         int page = (size / PAGE_SIZE) + 1;
         CategoryType type = CategoryType.fromString(item.getTitle());
@@ -56,7 +57,10 @@ public class CategoryListPresenterImpl implements CategoriesContract.CategoryLis
 
             @Override
             public void onNext(List<? extends Object> objects) {
-                if(objects == null || objects.isEmpty()){
+                isReachedEnd = size > 0 && objects.size() < PAGE_SIZE || objects.size() == 0;
+                if(isReachedEnd){
+                    fragment.setReachedEnd(isReachedEnd);
+                }else if(objects == null || objects.isEmpty()){
                     fragment.updateState(true);
                     return;
                 }
