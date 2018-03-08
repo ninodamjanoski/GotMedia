@@ -1,5 +1,6 @@
 package com.mobgen.gotmedia.app.presentation.categories.presenter;
 
+import com.mobgen.gotmedia.app.domain.categories.enums.CategoryType;
 import com.mobgen.gotmedia.app.domain.categories.repository.CategoriesRepository;
 import com.mobgen.gotmedia.app.entity.categories.Category;
 import com.mobgen.gotmedia.app.presentation.categories.CategoriesFragment;
@@ -60,6 +61,11 @@ public class CategoriesPresenterImpl implements CategoriesContract.CategoriesPre
 
     @Override
     public void onItemSelected(Category data) {
+        CategoryType type = CategoryType.fromString(data.getTitle());
+        if(type.equals(CategoryType.UNKNOWN)){
+            fragment.handleUnknownType();
+            return;
+        }
         fragment.showCategoryListFragment(data);
     }
 

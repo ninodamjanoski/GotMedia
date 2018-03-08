@@ -4,6 +4,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v17.leanback.widget.ClassPresenterSelector;
 import android.support.v17.leanback.widget.PresenterSelector;
 import android.support.v7.widget.LinearLayoutManager;
@@ -157,5 +158,9 @@ public class CategoriesFragment extends FragmentBase {
         Rect rectf = new Rect();
         view.getGlobalVisibleRect(rectf);
         return rectf.top;
+    }
+
+    public void handleUnknownType() {
+        Snackbar.make(getView(), R.string.unknown_type_info_message, Snackbar.LENGTH_SHORT).show();
     }
 }

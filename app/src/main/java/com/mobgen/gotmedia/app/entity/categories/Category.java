@@ -3,9 +3,13 @@ package com.mobgen.gotmedia.app.entity.categories;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Keep;
 
 /**
  * Created on 3/2/18.
@@ -15,6 +19,7 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity(indexes = {
         @Index(value = "id", unique = true)
 })
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Category implements Parcelable {
 
     private String id;
@@ -40,8 +45,9 @@ public class Category implements Parcelable {
         title = in.readString();
     }
 
-    @Generated(hash = 2032260999)
-    public Category(String id, String title, String href) {
+    @Keep
+    public Category(@JsonProperty("id") String id, @JsonProperty("title") String title,
+                    @JsonProperty("href") String href) {
         this.id = id;
         this.title = title;
         this.href = href;

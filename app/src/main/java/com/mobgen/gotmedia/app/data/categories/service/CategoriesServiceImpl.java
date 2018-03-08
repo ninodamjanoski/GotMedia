@@ -1,8 +1,8 @@
 package com.mobgen.gotmedia.app.data.categories.service;
 
-import com.mobgen.gotmedia.app.data.categories.CategoriesDto;
 import com.mobgen.gotmedia.app.domain.categories.service.CategoriesService;
 import com.mobgen.gotmedia.app.entity.categories.Book;
+import com.mobgen.gotmedia.app.entity.categories.Category;
 import com.mobgen.gotmedia.app.entity.categories.Character;
 import com.mobgen.gotmedia.app.entity.categories.House;
 import com.mobgen.gotmedia.core.utilities.rx.SchedulerProvider;
@@ -32,7 +32,7 @@ public class CategoriesServiceImpl implements CategoriesService {
 
 
     @Override
-    public Observable<Response<List<CategoriesDto>>> pollCategories() {
+    public Observable<Response<List<Category>>> pollCategories() {
         return gotPollService.pollCategories()
                 .subscribeOn(schedulerProvider.getIo())
                 .observeOn(schedulerProvider.getMain());
@@ -40,7 +40,7 @@ public class CategoriesServiceImpl implements CategoriesService {
 
     @Override
     public Observable<Response<List<Book>>> getBooks(String url, int page, int pageSize) {
-        return gotPollService.pollBooks(url)
+        return gotPollService.pollCategory(url, page, pageSize)
                 .subscribeOn(schedulerProvider.getIo())
                 .observeOn(schedulerProvider.getMain());
     }

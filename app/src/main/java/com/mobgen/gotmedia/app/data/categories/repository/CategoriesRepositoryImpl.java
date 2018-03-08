@@ -1,6 +1,5 @@
 package com.mobgen.gotmedia.app.data.categories.repository;
 
-import com.mobgen.gotmedia.app.data.categories.CategoriesDto;
 import com.mobgen.gotmedia.app.domain.categories.enums.CategoryType;
 import com.mobgen.gotmedia.app.domain.categories.repository.CategoriesRepository;
 import com.mobgen.gotmedia.app.domain.categories.service.CategoriesCacheService;
@@ -42,9 +41,9 @@ public class CategoriesRepositoryImpl implements CategoriesRepository {
                     public Observable<?> call(Boolean hasCategoriesResults) {
                         if(!hasCategoriesResults){
                             return categoriesService.pollCategories()
-                                    .map(new Func1<Response<List<CategoriesDto>>, Object>(){
+                                    .map(new Func1<Response<List<Category>>, Object>(){
                                         @Override
-                                        public Object call(Response<List<CategoriesDto>> categoriesResults) {
+                                        public Object call(Response<List<Category>> categoriesResults) {
                                             if(categoriesResults.code() == 200){
                                                 categoriesCacheService.writeCategoriesInfo(categoriesResults.body());
                                                 return categoriesResults.body();
@@ -65,6 +64,8 @@ public class CategoriesRepositoryImpl implements CategoriesRepository {
 
     @Override
     public Observable<List<? extends Object>> getCategory(String url, CategoryType type, int page, int pageSize) {
+        // backend service temp fix
+        url = url.replace("/", "_");
         Observable<List<? extends Object>> observable = Observable.just(null);
         switch (type){
             case BOOKS:

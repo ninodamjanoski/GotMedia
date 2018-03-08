@@ -14,4 +14,5 @@
     <string name="date">Date released:</string>
     <string name="title">Title:</string>
     <string name="region">Region:</string>
+    <string name="unknown_type_info_message">Unknown Category type. Please select from other categories.</string>
 </resources>

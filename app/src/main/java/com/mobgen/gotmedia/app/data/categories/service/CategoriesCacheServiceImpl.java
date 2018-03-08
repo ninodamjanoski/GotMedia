@@ -1,6 +1,5 @@
 package com.mobgen.gotmedia.app.data.categories.service;
 
-import com.mobgen.gotmedia.app.data.categories.CategoriesDto;
 import com.mobgen.gotmedia.app.domain.categories.service.CategoriesCacheService;
 import com.mobgen.gotmedia.app.entity.categories.Category;
 import com.mobgen.gotmedia.app.entity.categories.CategoryDao;
@@ -56,9 +55,9 @@ public class CategoriesCacheServiceImpl implements CategoriesCacheService {
     }
 
     @Override
-    public void writeCategoriesInfo(List<CategoriesDto> categoriesDtos) {
+    public void writeCategoriesInfo(List<Category> categoriesDtos) {
         CategoryDao categoryDao = daoSession.getCategoryDao();
-        for(CategoriesDto result : categoriesDtos){
+        for(Category result : categoriesDtos){
             Category categoriesResult = new Category(result.getId(), result.getTitle(), result.getHref());
             categoryDao.insertOrReplace(categoriesResult);
         }

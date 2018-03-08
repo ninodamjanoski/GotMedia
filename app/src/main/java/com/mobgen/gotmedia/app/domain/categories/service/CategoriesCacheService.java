@@ -1,6 +1,6 @@
 package com.mobgen.gotmedia.app.domain.categories.service;
 
-import com.mobgen.gotmedia.app.data.categories.CategoriesDto;
+import com.mobgen.gotmedia.app.entity.categories.Category;
 
 import java.util.List;
 
@@ -14,5 +14,5 @@ public interface CategoriesCacheService {
 
     Observable<List<? extends Object>> getCategories();
     Observable<Boolean> hasCategories();
-    void writeCategoriesInfo(List<CategoriesDto> categoriesResult);
+    void writeCategoriesInfo(List<Category> categoriesResult);
 }
