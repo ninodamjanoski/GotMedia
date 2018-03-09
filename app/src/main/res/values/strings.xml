@@ -15,4 +15,15 @@
     <string name="title">Title:</string>
     <string name="region">Region:</string>
     <string name="unknown_type_info_message">Unknown Category type. Please select from other categories.</string>
+    <string name="name">Name:</string>
+    <string name="gender">Gender:</string>
+    <string name="born">Born:</string>
+    <string name="died">Died:</string>
+    <string name="spouse">Spouse:</string>
+    <string name="father">Father:</string>
+    <string name="aliases">Aliases:</string>
+    <string name="allegiances">Allegiances:</string>
+    <string name="mother">Mother:</string>
+    <string name="played_by">Played by:</string>
+    <string name="titles">Titles:</string>
 </resources>

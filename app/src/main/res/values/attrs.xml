@@ -3,6 +3,7 @@
 
     <declare-styleable name="TitleDescRowView">
         <attr name="title" format="string" />
+        <attr name="hideDivider" format="boolean" />
     </declare-styleable>
 
 

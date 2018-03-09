@@ -24,16 +24,12 @@ public class HouseCell extends ChildClickPresenter {
         private final TextView textName;
         private final TitleDescRowView textTitle;
         private final TitleDescRowView textRegion;
-        private final View titleDivider;
-        View view;
 
         public HouseCellViewHolder(View view) {
             super(view);
-            this.view = view;
             textName = view.findViewById(R.id.name);
             textTitle = view.findViewById(R.id.title);
             textRegion = view.findViewById(R.id.region);
-            titleDivider = view.findViewById(R.id.title_divider);
         }
 
         @Override
@@ -43,16 +39,10 @@ public class HouseCell extends ChildClickPresenter {
                 if(textTitle.getVisibility() != View.GONE){
                     textTitle.setVisibility(View.GONE);
                 }
-                if(titleDivider.getVisibility() != View.GONE){
-                    titleDivider.setVisibility(View.GONE);
-                }
             }else {
                 textTitle.setDesc(title);
                 if(textTitle.getVisibility() != View.VISIBLE){
                     textTitle.setVisibility(View.VISIBLE);
-                }
-                if(titleDivider.getVisibility() != View.VISIBLE){
-                    titleDivider.setVisibility(View.VISIBLE);
                 }
             }
             textRegion.setDesc(region);

@@ -9,5 +9,6 @@ import java.util.List;
 interface CharacterViewHolder {
 
     void bindCharacterData(List<String> aliases, List<String> allegiances, List<String> titles, List<String> playedBy,
-                           String born, String culture, String died, String name, String gender, String mother);
+                           String born, String culture, String died, String name, String gender, String mother, String father, String spouse);
 }
+

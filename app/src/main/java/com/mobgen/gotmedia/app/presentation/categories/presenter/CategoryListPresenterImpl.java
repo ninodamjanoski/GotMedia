@@ -57,7 +57,7 @@ public class CategoryListPresenterImpl implements CategoriesContract.CategoryLis
 
             @Override
             public void onNext(List<? extends Object> objects) {
-                isReachedEnd = size > 0 && objects.size() < PAGE_SIZE || objects.size() == 0;
+                isReachedEnd = size > 0 && objects.size() < PAGE_SIZE;
                 if(isReachedEnd){
                     fragment.setReachedEnd(isReachedEnd);
                 }else if(objects == null || objects.isEmpty()){

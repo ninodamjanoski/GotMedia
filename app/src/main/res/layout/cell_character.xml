@@ -14,63 +14,76 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/authors_view"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/title"
-            style="@style/CellTextView"
+        <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="@dimen/book_title_min_height"
-            android:text="test1"
-            android:textSize="@dimen/cell_title_text_size" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/title"
-            android:background="@color/gray_divider" />
+            android:text="@string/name" />
 
         <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
-            android:id="@+id/authors"
+            android:id="@+id/aliases"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/authors" />
+            android:text="@string/aliases" />
         <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
-            android:id="@+id/isbn"
+            android:id="@+id/allegiances"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/isbn" />
+            android:text="@string/allegiances" />
 
         <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
-            android:id="@+id/country"
+            android:id="@+id/gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/country" />
+            android:text="@string/gender" />
 
         <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
-            android:id="@+id/media_type"
+            android:id="@+id/born"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/media_type" />
+            android:text="@string/born" />
 
         <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
-            android:id="@+id/num_pages"
+            android:id="@+id/died"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/number_pages" />
+            android:text="@string/died" />
 
         <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
-            android:id="@+id/publisher"
+            android:id="@+id/spouse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/publisher" />
+            android:text="@string/spouse" />
 
         <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
-            android:id="@+id/date"
+            android:id="@+id/father"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/date"
+            android:text="@string/father" />
+
+        <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
+            android:id="@+id/mother"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mother" />
+
+        <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
+            android:id="@+id/playedBy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/played_by" />
+
+        <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
+            android:id="@+id/titles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/titles" />
+
+        <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
+            android:id="@+id/culture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Culture:"
             app:hideDivider="true" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -2,6 +2,7 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_below="@+id/header_content"
     android:layout_marginBottom="@dimen/cell_vertical_margin"
     android:layout_marginEnd="@dimen/cell_horizontal_margin"
@@ -36,17 +37,11 @@
             android:layout_height="wrap_content"
             android:text="@string/title" />
 
-        <View
-            android:id="@+id/title_divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="@dimen/Cell_paragraph_left"
-            android:background="@color/gray_divider" />
-
         <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
             android:id="@+id/region"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/region" />
+            android:text="@string/region"
+            app:hideDivider="true" />
   </LinearLayout>
 </android.support.v7.widget.CardView>

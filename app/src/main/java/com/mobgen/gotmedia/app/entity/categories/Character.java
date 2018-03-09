@@ -24,12 +24,15 @@ public class Character implements Parcelable {
     private final String name;
     private final String gender;
     private final String mother;
+    private final String father;
+    private final String spouse;
 
-    public Character(@JsonProperty("aliases")List<String> aliases, @JsonProperty("allegiances")List<String> allegiances,
-                     @JsonProperty("titles")List<String> titles, @JsonProperty("playedBy")List<String> playedBy,
-                     @JsonProperty("born")String born, @JsonProperty("culture")String culture,
-                     @JsonProperty("died")String died, @JsonProperty("id")int id,
-                     @JsonProperty("name")String name, @JsonProperty("gender")String gender, @JsonProperty("mother")String mother) {
+    public Character(@JsonProperty("aliases") List<String> aliases, @JsonProperty("allegiances") List<String> allegiances,
+                     @JsonProperty("titles") List<String> titles, @JsonProperty("playedBy") List<String> playedBy,
+                     @JsonProperty("born") String born, @JsonProperty("culture") String culture,
+                     @JsonProperty("died") String died, @JsonProperty("id") int id,
+                     @JsonProperty("name") String name, @JsonProperty("gender") String gender, @JsonProperty("mother") String mother,
+                     @JsonProperty("father") String father, @JsonProperty("spouse") String spouse) {
         this.aliases = aliases;
         this.allegiances = allegiances;
         this.titles = titles;
@@ -41,6 +44,8 @@ public class Character implements Parcelable {
         this.name = name;
         this.gender = gender;
         this.mother = mother;
+        this.father = father;
+        this.spouse = spouse;
     }
 
     protected Character(Parcel in) {
@@ -55,6 +60,8 @@ public class Character implements Parcelable {
         name = in.readString();
         gender = in.readString();
         mother = in.readString();
+        this.father = in.readString();
+        this.spouse = in.readString();
     }
 
     public static final Creator<Character> CREATOR = new Creator<Character>() {
@@ -113,6 +120,14 @@ public class Character implements Parcelable {
         return mother;
     }
 
+    public String getFather() {
+        return father;
+    }
+
+    public String getSpouse() {
+        return spouse;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -131,5 +146,7 @@ public class Character implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(gender);
         parcel.writeString(mother);
+        parcel.writeString(father);
+        parcel.writeString(spouse);
     }
 }

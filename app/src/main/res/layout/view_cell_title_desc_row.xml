@@ -25,4 +25,10 @@
             android:text="@string/media_type" />
     </LinearLayout>
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/Cell_paragraph_left"
+        android:background="@color/gray_divider" />
 </LinearLayout>
