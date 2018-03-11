@@ -62,7 +62,13 @@ public class TitleDescRowView extends LinearLayout {
     }
 
     public void hideDivider(boolean hide){
-        divider.setVisibility(hide ? GONE : VISIBLE);
+        if(hide){
+            if(divider.getVisibility() != GONE)
+            divider.setVisibility(GONE);
+        }else {
+            if(divider.getVisibility() != VISIBLE)
+                divider.setVisibility(VISIBLE);
+        }
     }
 
     public void setTextTitle(String textTitle) {

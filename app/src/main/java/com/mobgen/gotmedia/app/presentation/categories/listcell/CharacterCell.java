@@ -63,9 +63,13 @@ public class CharacterCell extends ChildClickPresenter {
             handleSimpleView(this.died, died);
             handleSimpleView(this.name, name);
             handleSimpleView(this.gender, gender);
-            handleSimpleView(this.mother, mother);
-            handleSimpleView(this.father, father);
-            handleSimpleView(this.spouse, spouse);
+
+            handleDividerLastRow();
+        }
+
+        private void handleDividerLastRow() {
+            titles.hideDivider(culture.getVisibility() == View.GONE);
+            playedBy.hideDivider(titles.getVisibility() == View.GONE);
         }
 
         private void handleSimpleView(TitleDescRowView descRowView, String s) {

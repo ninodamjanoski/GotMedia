@@ -53,18 +53,21 @@
             android:id="@+id/spouse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:text="@string/spouse" />
 
         <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
             android:id="@+id/father"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:text="@string/father" />
 
         <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView
             android:id="@+id/mother"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:text="@string/mother" />
 
         <com.mobgen.gotmedia.app.presentation.view.TitleDescRowView

@@ -4,6 +4,7 @@ import com.mobgen.gotmedia.app.domain.categories.enums.CategoryType;
 import com.mobgen.gotmedia.app.domain.categories.repository.CategoriesRepository;
 import com.mobgen.gotmedia.app.entity.categories.Category;
 import com.mobgen.gotmedia.app.presentation.categories.CategoriesFragment;
+import com.mobgen.gotmedia.core.utilities.EspressoIdlingResource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,8 @@ public class CategoriesPresenterImpl implements CategoriesContract.CategoriesPre
     }
 
     public void visualizeData() {
+
+        EspressoIdlingResource.increment();
         categoriesRepository.getCategories()
                 .subscribe(new Subscriber<List<? extends Object>>() {
                     @Override
@@ -44,11 +47,16 @@ public class CategoriesPresenterImpl implements CategoriesContract.CategoriesPre
 
                     @Override
                     public void onError(Throwable e) {
-
+                        if (!EspressoIdlingResource.getIdlingResource().isIdleNow()) {
+                            EspressoIdlingResource.decrement(); // Set app as idle.
+                        }
                     }
 
                     @Override
                     public void onNext(List<? extends Object> categories) {
+                        if (!EspressoIdlingResource.getIdlingResource().isIdleNow()) {
+                            EspressoIdlingResource.decrement(); // Set app as idle.
+                        }
                         if(categories == null || categories.size() == 0){
                             fragment.updateState(true);
                             return;
