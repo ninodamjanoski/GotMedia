@@ -86,4 +86,5 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.2'
 
     compile 'jp.wasabeef:recyclerview-animators:2.3.0'
+    androidTestCompile 'junit:junit:4.12'
 }

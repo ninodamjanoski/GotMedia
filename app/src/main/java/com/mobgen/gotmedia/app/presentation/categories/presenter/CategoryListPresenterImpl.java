@@ -43,7 +43,7 @@ public class CategoryListPresenterImpl implements CategoriesContract.CategoryLis
 
         EspressoIdlingResource.increment();
         fragment.updateState(false);
-        int page = (size / PAGE_SIZE) + 1;
+        int page = getPage(size);
         CategoryType type = CategoryType.fromString(item.getTitle());
         String url = item.getHref().substring(1, item.getHref().length());
         categoriesRepository.getCategory(url, type, page, PAGE_SIZE)
@@ -62,7 +62,7 @@ public class CategoryListPresenterImpl implements CategoriesContract.CategoryLis
             }
 
             @Override
-            public void onNext(List<? extends Object> objects) {
+            public void onNext(List<?> objects) {
                 if (!EspressoIdlingResource.getIdlingResource().isIdleNow()) {
                     EspressoIdlingResource.decrement(); // Set app as idle.
                 }
@@ -77,5 +77,9 @@ public class CategoryListPresenterImpl implements CategoriesContract.CategoryLis
                 fragment.showData((List<Object>) objects);
             }
         });
+    }
+
+    public int getPage(int size) {
+        return (size / PAGE_SIZE) + 1;
     }
 }
