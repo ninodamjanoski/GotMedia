@@ -81,10 +81,7 @@ public class GotArrayObjectAdapter extends ObjectAdapter {
             this.items.remove(index);
             notifyItemRangeRemoved(index, 1);
         }
-        if (index >= 0) {
-            return true;
-        }
-        return false;
+        return index >= 0;
     }
 
     public void replace(int position, Object item) {

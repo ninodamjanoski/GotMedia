@@ -1,6 +1,5 @@
 package com.mobgen.gotmedia.app.presentation.categories.listcell;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,5 +9,5 @@ import java.util.List;
 interface BookViewHolder {
 
     void bindBookData(List<String> authors, String country, String isbn, String mediaType, int numPages,
-                      String name, String publisher, Date released);
+                      String name, String publisher, String released);
 }

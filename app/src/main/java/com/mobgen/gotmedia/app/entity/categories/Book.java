@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mobgen.gotmedia.core.utilities.GotTextUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Book implements Parcelable {
     private final int numPages;
     private final String name;
     private final String publisher;
-    private final Date released;
+    private final String released;
 
     public Book(@JsonProperty("authors")List<String> authors, @JsonProperty("country")String country, @JsonProperty("isbn")String isbn,
                 @JsonProperty("mediaType")String mediaType, @JsonProperty("numberOfPages")int numPages,
@@ -33,7 +34,7 @@ public class Book implements Parcelable {
         this.numPages = numPages;
         this.name = name;
         this.publisher = publisher;
-        this.released = released;
+        this.released = GotTextUtil.formatDate(released);
     }
 
 
@@ -45,7 +46,7 @@ public class Book implements Parcelable {
         numPages = in.readInt();
         name = in.readString();
         publisher = in.readString();
-        released = new Date(in.readLong());
+        released = in.readString();
     }
 
     public static final Creator<Book> CREATOR = new Creator<Book>() {
@@ -88,7 +89,7 @@ public class Book implements Parcelable {
         return publisher;
     }
 
-    public Date getReleased() {
+    public String getReleased() {
         return released;
     }
 
@@ -106,6 +107,6 @@ public class Book implements Parcelable {
         parcel.writeInt(numPages);
         parcel.writeString(name);
         parcel.writeString(publisher);
-        parcel.writeLong(released.getTime());
+        parcel.writeString(released);
     }
 }

@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mobgen.gotmedia.R;
-import com.mobgen.gotmedia.app.presentation.FragmentNavListener;
+import com.mobgen.gotmedia.app.presentation.view.fragment.FragmentNavListener;
 import com.mobgen.gotmedia.app.presentation.splash.presenter.SplashContract;
 import com.mobgen.gotmedia.core.fragment.base.FragmentBase;
 

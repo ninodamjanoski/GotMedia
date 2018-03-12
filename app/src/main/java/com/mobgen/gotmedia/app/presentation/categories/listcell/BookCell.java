@@ -12,7 +12,6 @@ import com.mobgen.gotmedia.app.entity.categories.Book;
 import com.mobgen.gotmedia.app.presentation.view.TitleDescRowView;
 import com.mobgen.gotmedia.core.lists.ChildClickPresenter;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,7 +47,7 @@ public class BookCell extends ChildClickPresenter {
 
         @Override
         public void bindBookData(List<String> authors, String country, String isbn, String mediaType,
-                                 int numPages, String name, String publisher, Date released) {
+                                 int numPages, String name, String publisher, String released) {
             textTitle.setText(name);
             setAuthors(authors);
             textCountry.setDesc(country);
@@ -56,7 +55,7 @@ public class BookCell extends ChildClickPresenter {
             textMediatype.setDesc(mediaType);
             textNumPages.setDesc(String.valueOf(numPages));
             textPublisher.setDesc(publisher);
-            textDate.setDesc(released.toString());
+            textDate.setDesc(released);
         }
 
         private void setAuthors(List<String> authors) {

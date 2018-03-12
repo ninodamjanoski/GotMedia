@@ -1,4 +1,4 @@
-package com.mobgen.gotmedia.presentation
+package com.mobgen.gotmedia.presentation.view.activity
 
 import android.os.Bundle
 import com.mobgen.gotmedia.core.activity.base.ActivityBase

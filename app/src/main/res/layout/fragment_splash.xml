@@ -5,7 +5,9 @@
     android:gravity="center">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/splash_image_width"
         android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:contentDescription="@string/splash"
         android:src="@drawable/image"/>
 </LinearLayout>

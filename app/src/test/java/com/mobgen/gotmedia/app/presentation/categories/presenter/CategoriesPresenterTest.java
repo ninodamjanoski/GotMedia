@@ -48,7 +48,7 @@ public class CategoriesPresenterTest {
     public void visualizeDataTest() throws Exception {
 
         when(categoriesRepository.getCategories())
-                .thenReturn(Observable.just(categories));
+                .thenReturn(Observable.<List<? extends Object>>just(categories));
 
         presenter.takeView(categoriesFragment);
 
@@ -63,14 +63,14 @@ public class CategoriesPresenterTest {
     public void noCacheNoNetworkVisualizeDataTest() throws Exception {
 
         when(categoriesRepository.getCategories())
-                .thenReturn(Observable.<List<Category>>just(null));
+                .thenReturn(Observable.<List<? extends Object>>just(null));
 
         presenter.takeView(categoriesFragment);
 
-        ArgumentCaptor<List> itemsResultArgumentCaptor = ArgumentCaptor.forClass(List.class);
+        ArgumentCaptor<Boolean> isErrorArgumentCaptor = ArgumentCaptor.forClass(Boolean.class);
 
-        verify(categoriesFragment).showData(itemsResultArgumentCaptor.capture());
+        verify(categoriesFragment).updateState(isErrorArgumentCaptor.capture());
 
-        assertTrue(itemsResultArgumentCaptor.getValue().size() == 0);
+        assertTrue(isErrorArgumentCaptor.getValue());
     }
 }

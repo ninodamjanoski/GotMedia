@@ -26,4 +26,6 @@
     <string name="mother">Mother:</string>
     <string name="played_by">Played by:</string>
     <string name="titles">Titles:</string>
+    <string name="clear">clear</string>
+    <string name="splash">splash</string>
 </resources>

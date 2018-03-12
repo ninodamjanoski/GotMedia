@@ -156,7 +156,7 @@ public class RecyclerViewAdapter extends Adapter {
     }
 
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Presenter presenter = (Presenter) presenters.get(viewType);
+        Presenter presenter = presenters.get(viewType);
         if (presenter instanceof ChildClickPresenter) {
             ((ChildClickPresenter) presenter).setOnCellChildClickListener(onCellChildClickListener);
         }

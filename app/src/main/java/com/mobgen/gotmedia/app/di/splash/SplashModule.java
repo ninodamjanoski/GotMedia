@@ -31,16 +31,4 @@ public abstract class SplashModule {
 
     @FragmentScoped
     @Binds abstract SplashContract.SplashPresenter splashPresenter(SplashPresenterImpl splashPresenter);
-
-    @Binds
-    @ActivityScoped
-    abstract CategoriesService categoriesService(CategoriesServiceImpl categoriesService);
-
-    @Binds
-    @ActivityScoped
-    abstract CategoriesCacheService categoriesCacheService(CategoriesCacheServiceImpl categoriesCacheService);
-
-    @Binds
-    @ActivityScoped
-    abstract CategoriesRepository categoriesRepository(CategoriesRepositoryImpl categoriesRepository);
 }

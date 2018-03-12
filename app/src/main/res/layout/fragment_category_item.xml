@@ -14,6 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/clear"
         android:padding="@dimen/default_padding"
         android:src="@android:drawable/ic_menu_close_clear_cancel"
         android:visibility="invisible" />

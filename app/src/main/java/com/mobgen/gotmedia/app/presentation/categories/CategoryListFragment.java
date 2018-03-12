@@ -124,7 +124,7 @@ public class CategoryListFragment extends FragmentBase {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.category_item_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_category_item, container, false);
         list = view.findViewById(R.id.list);
         header = view.findViewById(R.id.header);
         progressBar = view.findViewById(R.id.progressBar);

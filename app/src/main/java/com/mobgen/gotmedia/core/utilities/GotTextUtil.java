@@ -8,8 +8,11 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.SuperscriptSpan;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class CmTextUtil {
+
+public class GotTextUtil {
 
 
     public static final String COMMON_LINE_SEPARATOR = " - ";
@@ -18,6 +21,7 @@ public class CmTextUtil {
     public static final String COMMON_SEPARATOR = " ";
     public static final String OPEN_BRACKET = " (";
     public static final String CLOSE_BRACKET = ")";
+    private static SimpleDateFormat dateFormatTo = new SimpleDateFormat("MM/dd/yyyy");
 
 
     public static void addSuperScript(TextView text, String superscript) {
@@ -47,8 +51,7 @@ public class CmTextUtil {
         return original.substring(0, 1).toUpperCase() + original.substring(1);
     }
 
-    public static String formatWithIata(String placeName, String iata) {
-        placeName += CmTextUtil.OPEN_BRACKET + iata + CmTextUtil.CLOSE_BRACKET;
-        return placeName;
+    public static String formatDate(Date timestamp) {
+        return dateFormatTo.format(timestamp);
     }
 }

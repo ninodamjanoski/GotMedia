@@ -61,22 +61,22 @@ public class TitleDescRowView extends LinearLayout {
         }
     }
 
-    public void hideDivider(boolean hide){
-        if(hide){
-            if(divider.getVisibility() != GONE)
-            divider.setVisibility(GONE);
-        }else {
-            if(divider.getVisibility() != VISIBLE)
-                divider.setVisibility(VISIBLE);
-        }
-    }
-
     public void setTextTitle(String textTitle) {
         this.textTitle.setText(textTitle);
     }
 
     public void setDesc(String textDesc) {
         this.desc.setText(textDesc);
+    }
+
+    public void hideDivider(boolean hide){
+        if(hide){
+            if(divider.getVisibility() != GONE)
+                divider.setVisibility(GONE);
+        }else {
+            if(divider.getVisibility() != VISIBLE)
+                divider.setVisibility(VISIBLE);
+        }
     }
 
 }

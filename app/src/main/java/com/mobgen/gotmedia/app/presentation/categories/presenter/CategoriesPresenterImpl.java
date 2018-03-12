@@ -6,13 +6,11 @@ import com.mobgen.gotmedia.app.entity.categories.Category;
 import com.mobgen.gotmedia.app.presentation.categories.CategoriesFragment;
 import com.mobgen.gotmedia.core.utilities.EspressoIdlingResource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import rx.Subscriber;
-import rx.functions.Func1;
 
 /**
  * Created on 3/5/18.

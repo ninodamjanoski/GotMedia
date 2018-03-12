@@ -66,17 +66,11 @@ public class UiUtil {
         }
         DisplayMetrics metrics = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
-        if (metrics.widthPixels > metrics.heightPixels) {
-            return false;
-        }
-        return true;
+        return metrics.widthPixels <= metrics.heightPixels;
     }
 
     public static boolean isLandscape(Context context) {
-        if (context != null && context.getResources().getConfiguration().orientation == 2) {
-            return true;
-        }
-        return false;
+        return context != null && context.getResources().getConfiguration().orientation == 2;
     }
 
     public static int actionBarHeight(Context context) {
@@ -109,9 +103,9 @@ public class UiUtil {
     private static int getSoftButtonSize(WindowManager windowManager, Func1<DisplayMetrics, Integer> func1) {
         DisplayMetrics metrics = new DisplayMetrics();
         windowManager.getDefaultDisplay().getMetrics(metrics);
-        int usableWidth = ((Integer) func1.call(metrics)).intValue();
+        int usableWidth = func1.call(metrics).intValue();
         windowManager.getDefaultDisplay().getRealMetrics(metrics);
-        int realWidth = ((Integer) func1.call(metrics)).intValue();
+        int realWidth = func1.call(metrics).intValue();
         if (realWidth > usableWidth) {
             return realWidth - usableWidth;
         }

@@ -3,9 +3,15 @@ package com.mobgen.gotmedia.app.di;
 import android.content.Context;
 
 import com.mobgen.gotmedia.BuildConfig;
+import com.mobgen.gotmedia.app.data.categories.repository.CategoriesRepositoryImpl;
+import com.mobgen.gotmedia.app.data.categories.service.CategoriesCacheServiceImpl;
+import com.mobgen.gotmedia.app.data.categories.service.CategoriesServiceImpl;
 import com.mobgen.gotmedia.app.data.categories.service.GotPollService;
 import com.mobgen.gotmedia.app.di.common.ActivityScoped;
 import com.mobgen.gotmedia.app.di.common.FragmentScoped;
+import com.mobgen.gotmedia.app.domain.categories.repository.CategoriesRepository;
+import com.mobgen.gotmedia.app.domain.categories.service.CategoriesCacheService;
+import com.mobgen.gotmedia.app.domain.categories.service.CategoriesService;
 import com.mobgen.gotmedia.app.entity.categories.DaoMaster;
 import com.mobgen.gotmedia.app.entity.categories.DaoSession;
 import com.mobgen.gotmedia.app.presentation.view.fragment.GotCategoriesParentFragment;
@@ -90,5 +96,17 @@ public abstract class GotCommonModule {
         Database database = devOpenHelper.getWritableDb();
         return new DaoMaster(database).newSession();
     }
+    
+    @Binds
+    @ActivityScoped
+    abstract CategoriesService categoriesService(CategoriesServiceImpl categoriesService);
+
+    @Binds
+    @ActivityScoped
+    abstract CategoriesCacheService categoriesCacheService(CategoriesCacheServiceImpl categoriesCacheService);
+
+    @Binds
+    @ActivityScoped
+    abstract CategoriesRepository categoriesRepository(CategoriesRepositoryImpl categoriesRepository);
 
 }

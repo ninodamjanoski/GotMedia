@@ -17,7 +17,7 @@ public class House implements Parcelable {
     private final String id;
     private final String name;
     private final String region;
-    private final String title;;
+    private final String title;
 
     public House(@JsonProperty("id") String id, @JsonProperty("name") String name,
                  @JsonProperty("region") String region, @JsonProperty("title") String title){
