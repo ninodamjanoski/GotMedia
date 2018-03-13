@@ -54,6 +54,13 @@ public class CategoriesRepositoryImpl implements CategoriesRepository {
                         }
                         return Observable.just(new ArrayList<>());
                     }
+                })
+                .onErrorResumeNext(new Func1<Throwable, Observable<?>>() {
+
+                    @Override
+                    public Observable<?> call(Throwable throwable) {
+                        return Observable.just(new ArrayList<>());
+                    }
                 });
     }
 
