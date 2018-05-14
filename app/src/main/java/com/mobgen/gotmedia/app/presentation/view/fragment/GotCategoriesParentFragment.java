@@ -57,7 +57,6 @@ public class GotCategoriesParentFragment extends GotMediaParentFragment implemen
             splashFragment = SplashFragment.newInstance();
             addChildFragment(splashFragment, R.id.activityContent, SplashFragment.TAG);
         }
-
     }
 
     @Override

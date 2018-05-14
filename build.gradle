@@ -27,7 +27,7 @@ task clean(type: Delete) {
 }
 
 ext {
-    minSdkVersion = 19
+    minSdkVersion = 17
     targetSdkVersion = 27
     compileSdkVersion = 27
     daggerVersion = '2.11'
